@@ -1,0 +1,18 @@
+<button [type]="type" [disabled]="disabled" [class]="'btn ' + variant" [class.full-width]="fullWidth"
+    [style.padding]="padding" [style.height]="height" [class.btn-sm]="size === 'sm'" [class.btn-md]="size === 'md'"
+    [class.btn-lg]="size === 'lg'" (click)="onButtonClick()">
+    @if (isLoading) {
+    <span class="material-symbols-rounded spinner">
+        progress_activity
+    </span>
+    }
+    @if (icon) {
+    <span class="material-symbols-rounded icon">
+        {{ icon }}
+    </span>
+    }
+
+    <span class="btn-label">
+        {{ label }}
+    </span>
+</button>

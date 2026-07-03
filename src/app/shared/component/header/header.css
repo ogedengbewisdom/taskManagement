@@ -1,0 +1,55 @@
+.app-wrapper {
+
+    background: #f7f9fb;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: var(--header-height);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.header-title {
+    font-size: 16px;
+    font-weight: 700;
+    font-weight: 600;
+    color: #191c1e;
+}
+
+.app-header {
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 24px;
+    height: 100%;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-button,
+.search-button {
+    border: none;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+
+.user-icon {
+    font-size: 15px;
+}
+
+.user-button {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    border: 1px solid var(--border);
+    background-color: var(--text-secondary-light);
+}

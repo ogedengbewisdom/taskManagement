@@ -1,0 +1,86 @@
+.dashboard {
+    min-height: 100vh;
+    max-width: 768px;
+    margin: 0 auto;
+    background: #f7f9fb;
+}
+
+.dashboard-content {
+    padding:
+        calc(var(--header-height) + 24px) 24px calc(var(--footer-height) + 24px);
+}
+
+.dashboard-content h2 {
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #191C1E;
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.filters button {
+    border: none;
+    background: transparent;
+    border-radius: 999px;
+    padding: 8px 18px;
+    border: 1px solid #6E7881;
+    color: #3E4850;
+}
+
+.board-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.filters button.active {
+    background: #e0e3e5;
+    color: #191C1E;
+}
+
+.btn-wrapper {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    z-index: 10;
+}
+
+/* Add these to your existing dashboard.css */
+
+.loading-state,
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 24px;
+    color: var(--text-secondary);
+}
+
+.loading-state p,
+.empty-state p {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+}
+
+.loading-state .material-symbols-rounded,
+.empty-state .material-symbols-rounded {
+    font-size: 40px;
+    color: var(--text-secondary);
+}
+
+/* Spinning loader */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.spinning {
+    animation: spin 1s linear infinite;
+}

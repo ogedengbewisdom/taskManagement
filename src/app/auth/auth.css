@@ -1,0 +1,117 @@
+ .auth-screen {
+     min-height: 100dvh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: var(--bg);
+     padding: 24px;
+ }
+
+ .auth-card {
+     width: 100%;
+     max-width: 420px;
+     display: flex;
+     flex-direction: column;
+     gap: 32px;
+ }
+
+ /* ─── Brand ─────────────────────────────────────────────────── */
+
+ .auth-brand {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 12px;
+ }
+
+ .brand-icon {
+     width: 56px;
+     height: 56px;
+     border-radius: 16px;
+     background: var(--primary);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .brand-icon .material-symbols-rounded {
+     font-size: 30px;
+     color: #ffffff;
+ }
+
+ .brand-name {
+     font-size: 22px;
+     font-weight: 700;
+     color: var(--text-primary);
+ }
+
+ /* ─── Header ─────────────────────────────────────────────────── */
+
+ .auth-header {
+     display: flex;
+     flex-direction: column;
+     gap: 6px;
+ }
+
+ .auth-header h2 {
+     font-size: 22px;
+     font-weight: 700;
+     color: var(--text-primary);
+ }
+
+ .auth-header p {
+     font-size: var(--font-size-md);
+     color: var(--text-secondary);
+ }
+
+ /* ─── Form ───────────────────────────────────────────────────── */
+
+ .auth-form {
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+ }
+
+ /* First + Last name side by side on signup */
+ .name-row {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 14px;
+ }
+
+ .forgot-row {
+     display: flex;
+     justify-content: flex-end;
+     margin-top: -8px;
+ }
+
+ .forgot-link {
+     font-size: var(--font-size-sm);
+     font-weight: 600;
+     color: var(--primary);
+     cursor: pointer;
+     text-decoration: none;
+ }
+
+ .forgot-link:hover {
+     text-decoration: underline;
+ }
+
+ /* ─── Footer ─────────────────────────────────────────────────── */
+
+ .auth-footer {
+     text-align: center;
+     font-size: var(--font-size-md);
+     color: var(--text-secondary);
+ }
+
+ .auth-link {
+     font-weight: 600;
+     color: var(--primary);
+     text-decoration: none;
+     margin-left: 4px;
+ }
+
+ .auth-link:hover {
+     text-decoration: underline;
+ }

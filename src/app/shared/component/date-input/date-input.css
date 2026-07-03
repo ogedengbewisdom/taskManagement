@@ -1,0 +1,76 @@
+.date-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.date-input-wrapper label {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.date-chip {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 0 16px;
+
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-dark);
+
+    background: #fff;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.date-chip:hover {
+    border-color: #6e7881;
+}
+
+.date-chip:focus-within {
+    border-color: #191c1e;
+}
+
+.date-chip.error {
+    border-color: #dc2626;
+}
+
+.date-chip .material-symbols-rounded {
+    font-size: 24px;
+    color: var(--text-secondary);
+}
+
+.date-value {
+    font-size: var(--font-size-md);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.date-chevron {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.hidden-date-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+}
+
+.placeholder {
+    color: #6B7280;
+}
+
+.error-text {
+    /* margin-top: 5px; */
+    font-size: 12px;
+    color: #dc2626;
+}

@@ -1,0 +1,134 @@
+<div class="task-detail-view">
+
+    <header class="task-header">
+        <div class="task-header-content">
+            <button class="header-btn" (click)="goBack()" aria-label="Go back">
+                <span class="material-symbols-rounded">arrow_back</span>
+            </button>
+            <h1 class="header-title">Task Details</h1>
+            <div class="header-spacer"></div>
+        </div>
+    </header>
+
+    @if (isLoading()) {
+    <div class="loading-state">
+        <span class="material-symbols-rounded spinning">progress_activity</span>
+        <p>Loading task...</p>
+    </div>
+    }
+
+    @if (!isLoading() && task(); as task) {
+
+    <main class="task-content">
+
+        <div class="task-section">
+            <h2 class="task-title">{{ task.title }}</h2>
+            <span class="status-pill status-pill--{{ task.status }}">
+                {{ task.status === 'todo' ? 'To Do' : task.status === 'in_progress' ? 'In Progress' : 'Done' }}
+            </span>
+        </div>
+
+        <form [formGroup]="editTaskForm" class="task-form">
+
+            <app-text-area [formGroup]="editTaskForm" [name]="'description'" [label]="'Description'"
+                [placeholder]="'Add description...'" [errorMessage]="errorMessage('description')"
+                [hasError]="hasError('description')" />
+
+            <div class="meta-grid">
+                <app-assignee-selector [invitees]="invitees" [(selectedUsers)]="selectedUsers" />
+
+                <app-date-input [formGroup]="editTaskForm" [name]="'dueDate'" [label]="'Due Date'" [minDate]="today"
+                    [errorMessage]="errorMessage('dueDate')" [hasError]="hasError('dueDate')" />
+            </div>
+
+            <div class="input-wrapper">
+                <h3>Checklist</h3>
+
+                <div class="checklist">
+
+                    @for (item of task.checklist; track item.id) {
+                    <label class="check-item">
+                        <input type="checkbox" [checked]="item.done" (change)="toggleChecklistItem(item.id)" />
+                        <span class="check-label" [class.completed]="item.done">
+                            {{ item.label }}
+                        </span>
+                        <button type="button" class="remove-checklist-btn" (click)="removeChecklistItem(item.id)">
+                            <span class="material-symbols-rounded">close</span>
+                        </button>
+                    </label>
+                    }
+
+                    @if (isAddingItem) {
+                    <div class="new-item-row">
+                        <input type="text" class="text-input" placeholder="Checklist item..." #newItemInput
+                            (keyup.enter)="confirmAddItem(newItemInput.value); newItemInput.value = ''"
+                            (keyup.escape)="cancelAddItem()" />
+                        <button type="button" class="confirm-btn"
+                            (click)="confirmAddItem(newItemInput.value); newItemInput.value = ''">
+                            <span class="material-symbols-rounded">check</span>
+                        </button>
+                        <button type="button" class="cancel-btn" (click)="cancelAddItem()">
+                            <span class="material-symbols-rounded">close</span>
+                        </button>
+                    </div>
+                    }
+
+                    @if (!isAddingItem) {
+                    <button type="button" class="add-item-btn" (click)="showAddItem()">
+                        + Add item
+                    </button>
+                    }
+
+                </div>
+            </div>
+
+        </form>
+
+        <section class="input-wrapper" style="margin-top: 32px;">
+            <h3>Activity</h3>
+            <div class="activity-list">
+                <div class="activity-system">
+                    <span class="material-symbols-rounded">history</span>
+                    <p>Due date: {{ task.dueDate | date:'MMM d, yyyy' }}</p>
+                </div>
+                <div class="activity-system">
+                    <span class="material-symbols-rounded">history</span>
+                    <p>Created: {{ task.createdAt | date:'MMM d, yyyy' }}</p>
+                </div>
+                <div class="activity-system">
+                    <span class="material-symbols-rounded">history</span>
+                    <p>Last updated: {{ task.updatedAt | date:'MMM d, yyyy' }}</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="task-footer">
+        <div class="task-footer-content">
+
+            <app-button label="Save" variant="secondary" [fullWidth]="true" [size]="'sm'" type="button"
+                [isLoading]="isSaving()" [disabled]="isSaving()" (click)="onSubmit()" />
+
+            @if (task.status !== 'done') {
+            <app-button label="Complete" icon="check_circle" variant="primary" [fullWidth]="true" [size]="'sm'"
+                type="button" [isLoading]="isCompleting()" [disabled]="!canComplete(task)" (click)="onComplete()" />
+            } @else {
+            <app-button label="Completed" icon="check_circle" variant="primary" [fullWidth]="true" [size]="'sm'"
+                type="button" [disabled]="true" />
+            }
+
+        </div>
+    </footer>
+
+    }
+
+    @if (!isLoading() && !task()) {
+    <div class="loading-state">
+        <span class="material-symbols-rounded">error_outline</span>
+        <p>Task not found</p>
+        <button class="back-link" (click)="goBack()">Go back</button>
+    </div>
+    }
+
+</div>

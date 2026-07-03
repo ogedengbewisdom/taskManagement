@@ -1,0 +1,68 @@
+<div class="task-form-view">
+
+    <header class="task-form-header">
+        <div class="task-form-header-content">
+            <button class="header-action" (click)="goBack()">Cancel</button>
+            <h1>{{ isEditMode ? 'Edit Board' : 'New Board' }}</h1>
+            <button class="header-action primary" type="button" (click)="onSubmit()">
+                {{ isEditMode ? 'Save' : 'Create' }}
+            </button>
+        </div>
+    </header>
+
+    <form [formGroup]="boardForm" class="task-form" (ngSubmit)="onSubmit()">
+
+        <app-text-input [formGroup]="boardForm" name="boardName" label="" placeholder="Board Name..."
+            [errorMessage]="errorMessage('boardName')" [hasError]="hasError('boardName')" />
+
+        <app-user-search-selector [allUsers]="allUsers" [(selectedUsers)]="selectedUsers"
+            (userAdded)="addMember($event)" />
+
+        <!-- Members list — only shown in edit mode -->
+        @if (isEditMode && boardMembers.length > 0) {
+        <div class="members-section">
+            <h3 class="members-title">Members</h3>
+
+            <div class="members-list">
+                @for (member of boardMembers; track member.userId) {
+                <div class="member-item">
+
+                    <div class="member-avatar">
+                        {{ member.firstName[0] }}{{ member.lastName[0] }}
+                    </div>
+
+                    <div class="member-info">
+                        <span class="member-name">{{ member.firstName }} {{ member.lastName }}</span>
+                        <span class="member-email">{{ member.email }}</span>
+                    </div>
+
+                    <span class="status-badge status-badge--{{ member.status }}">
+                        {{ member.status }}
+                    </span>
+
+                    <div class="member-actions">
+                        @if (member.status === 'pending' || member.status === 'declined') {
+                        <button type="button" class="member-action-btn reinvite" (click)="reinviteMember(member.userId)"
+                            aria-label="Reinvite member" title="Reinvite">
+                            <span class="material-symbols-rounded">send</span>
+                        </button>
+                        }
+
+                        <button type="button" class="member-action-btn remove" (click)="removeMember(member.userId)"
+                            aria-label="Remove member" title="Remove">
+                            <span class="material-symbols-rounded">person_remove</span>
+                        </button>
+                    </div>
+
+                </div>
+                }
+            </div>
+        </div>
+        }
+
+        <app-button [label]="isEditMode ? 'Update Board' : 'Create Board'" icon="add" variant="secondary" size="sm"
+            [fullWidth]="true" type="submit" [isLoading]="isLoading()" [disabled]="boardForm.invalid || isLoading()" />
+
+    </form>
+
+</div>

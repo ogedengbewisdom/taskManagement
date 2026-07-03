@@ -1,0 +1,11 @@
+<div class="textarea-wrapper" [formGroup]="formGroup">
+    <label [for]="name">{{ label }}</label>
+
+    <textarea [id]="name" [placeholder]="placeholder" class="textarea" [class.error]="hasError" [formControlName]="name"
+        rows="5">
+    </textarea>
+
+    @if (hasError) {
+    <p>{{ errorMessage }}</p>
+    }
+</div>

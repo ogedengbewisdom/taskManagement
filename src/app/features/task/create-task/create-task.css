@@ -1,0 +1,214 @@
+.task-form-view {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    background: var(--bg);
+    overflow: hidden;
+}
+
+.task-form-header {
+
+    padding: 16px;
+    padding-top: 24px;
+    height: var(--header-height);
+    background: var(--bg);
+    border-bottom: var(--border);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.task-form-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.task-form-header-content h1 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    /* centre the title regardless of icon widths */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.input-wrapper h3 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.assignees {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--button-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+}
+
+.add-avatar {
+    border: 1px dashed var(--border-color);
+    background: transparent;
+    cursor: pointer;
+}
+
+.header-action {
+    border: none;
+    background: transparent;
+    font-size: var(--font-size-md);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.disabled {
+    color: #6B7280;
+    cursor: not-allowed;
+}
+
+.task-form {
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto;
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* .task-form>* {
+    margin-bottom: 32px;
+} */
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background: #E5E7EB;
+    margin: 24px 0;
+}
+
+.task-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-header h3 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.add-btn {
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.checklist-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.text-input {
+    flex: 1;
+    height: 42px;
+
+    padding: 0 16px;
+
+    border: 1px solid var(--border-dark);
+    border-radius: var(--border-radius-md);
+
+    background: #fff;
+
+    font-size: var(--font-size-md);
+
+    outline: none;
+}
+
+.text-input:focus {
+    border-color: var(--text-primary);
+}
+
+.text-input.error {
+    border-color: #dc2626;
+}
+
+.remove-btn {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: var(--border-radius-md);
+
+    background: #f3f4f6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background: #e5e7eb;
+}
+
+.remove-btn .material-symbols-rounded {
+    font-size: 20px;
+    color: #dc2626;
+}
+
+.section-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.error-message {
+    margin-top: -6px;
+    margin-left: 4px;
+
+    font-size: 12px;
+    color: #dc2626;
+}

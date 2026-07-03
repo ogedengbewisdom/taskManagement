@@ -1,0 +1,108 @@
+.board-card {
+  background: #f7f9fb;
+
+  border: 1px solid var(--border-dark);
+
+  border-radius: 8px;
+
+  padding: 24px;
+
+  cursor: pointer;
+}
+
+.board-card h3 {
+  margin: 0 0 32px;
+
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #191c1e;
+}
+
+.board-meta {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.board-meta span {
+  font-family: 'Plus Jakarta Sans';
+
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #3e4850;
+}
+
+.progress-track {
+  height: 8px;
+
+  background: #e0e3e5;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+
+  background: #6e7881;
+}
+
+.board-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-btn {
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.edit-btn:hover {
+  background: rgba(0, 0, 0, .06);
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.archive-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  transition: background 0.15s, color 0.15s;
+}
+
+.archive-btn:hover {
+  background: var(--text-secondary-light);
+  color: var(--text-primary);
+}
+
+.archive-btn .material-symbols-rounded {
+  font-size: 18px;
+}

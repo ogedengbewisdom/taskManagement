@@ -1,0 +1,55 @@
+<!-- dashboard.html -->
+
+<app-header />
+
+<main class="dashboard">
+
+    <section class="dashboard-content">
+
+        <h2>Boards</h2>
+
+        <!-- Filter tabs -->
+        <div class="filters">
+            @for (filter of filters; track $index) {
+            <button [class.active]="filter.value === selectedFilter()" (click)="setFilter(filter.value)">
+                {{ filter.label }}
+            </button>
+            }
+        </div>
+
+        <!-- Loading state -->
+        @if (isLoading()) {
+        <div class="loading-state">
+            <span class="material-symbols-rounded spinning">progress_activity</span>
+            <p>Loading boards...</p>
+        </div>
+        }
+
+        <!-- Empty state -->
+        @if (!isLoading() && boards().length === 0) {
+        <div class="empty-state">
+            <span class="material-symbols-rounded">dashboard</span>
+            <p>No boards found</p>
+        </div>
+        }
+
+        <!-- Board list -->
+        @if (!isLoading() && boards().length > 0) {
+        <div class="board-list">
+            @for (board of boards(); track board.id) {
+            <app-board-card [board]="board" [progress]="(getProgress(board.id) | async) ?? 0"
+                [totalTasks]="(getTaskCount(board.id) | async) ?? 0" [isOwner]="isOwner(board.ownerId)"
+                (onClick)="openBoard(board)" (onEdit)="editBoard(board.id)" (onArchive)="archiveBoard($event)" />
+            }
+        </div>
+        }
+
+    </section>
+
+    <div class="btn-wrapper">
+        <app-button label="Create Board" icon="add" variant="secondary" size="sm" (click)="createBoard()" />
+    </div>
+
+</main>
+
+<app-bottom-nav />

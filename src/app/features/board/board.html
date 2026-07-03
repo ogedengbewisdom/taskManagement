@@ -1,0 +1,82 @@
+<!-- board-view.component.html -->
+
+<div class="board-view">
+
+    <!-- Header -->
+    <header class="board-header">
+        <div class="board-header-content">
+            <button class="header-btn" (click)="goBack()" aria-label="Go back">
+                <span class="material-symbols-rounded">arrow_back</span>
+            </button>
+
+            <h1 class="board-title">{{ boardName }}</h1>
+
+            <button class="header-btn" aria-label="More options">
+                <span class="material-symbols-rounded">more_vert</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Kanban columns — scrolls horizontally -->
+    <main class="board-main">
+        <div class="kanban-scroll">
+            <div class="kanban-track">
+
+                @for (column of columns; track trackByColumnKey($index, column)) {
+                <div class="kanban-column">
+
+                    <div class="col-header">
+                        <span class="col-title">{{ column.label }}</span>
+                        <span class="col-badge">{{ column.track }}</span>
+                    </div>
+
+                    <div class="drop-zone" cdkDropList [id]="column.key" [cdkDropListData]="column.tasks"
+                        [cdkDropListConnectedTo]="columns.map((col) => col.key)" [cdkDropListEnterPredicate]="canDrop"
+                        (cdkDropListDropped)="onTaskDrop($event, column.key)">
+                        @for (task of column.tasks; track trackByTaskId($index, task)) {
+                        <div class="task-card" [class.task-card-bg--done]="isDone(task)" [cdkDragData]="task"
+                            cdkDragHandle cdkDrag (click)="openTask(task.id)">
+                            <!-- Drag handle — user grabs this, click still works on the card -->
+                            <!-- <div class="drag-handle" cdkDragHandle>
+                            <span class="material-symbols-rounded">drag_indicator</span>
+                        </div> -->
+
+                            <p class="task-title" [class.task-title--done]="isDone(task)">{{ task.title }}</p>
+
+                            <div class="task-footer">
+                                @if (task.dueDate) {
+                                <div class="task-date" [class.task-date--overdue]="isOverdue(task)">
+                                    @if (isOverdue(task)) {
+                                    <span class="material-symbols-rounded date-icon">warning</span>
+                                    <span>{{ formatDate(task.dueDate) }} (Overdue)</span>
+                                    } @else {
+                                    <span class="material-symbols-rounded date-icon">calendar_today</span>
+                                    <span>{{ formatDate(task.dueDate) }}</span>
+                                    }
+                                </div>
+                                }
+                                <div class="task-avatar" aria-hidden="true">
+                                    <span class="material-symbols-rounded">person</span>
+                                </div>
+                            </div>
+
+                            <!-- Ghost preview while dragging -->
+                            <div *cdkDragPlaceholder class="drag-placeholder"></div>
+                        </div>
+                        }
+                    </div>
+
+                    <button class="add-task-btn" (click)="openCreateTask(column.key)">
+                        <span class="material-symbols-rounded">add</span>
+                        Add Task
+                    </button>
+
+                </div>
+                }
+
+            </div>
+        </div>
+    </main>
+
+    <app-bottom-nav />
+</div>

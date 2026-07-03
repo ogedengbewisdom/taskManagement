@@ -1,0 +1,52 @@
+.textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.textarea-wrapper label {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.textarea {
+    width: 100%;
+    min-height: 98px;
+
+    padding: 20px;
+
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-dark);
+
+    background: white;
+
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+
+    resize: none;
+    font-family: 'Poppins', sans-serif;
+
+    color: var(--text-primary);
+
+    transition: border-color 0.2s ease;
+}
+
+.textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.textarea.error {
+    border-color: #dc2626;
+}
+
+.textarea-wrapper p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: #dc2626;
+}

@@ -1,0 +1,80 @@
+<div class="invite-page">
+    <div class="invite-card">
+
+        <!-- Brand -->
+        <div class="brand">
+            <div class="brand-icon">
+                <span class="material-symbols-rounded">task_alt</span>
+            </div>
+            <span class="brand-name">TaskSpace</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Pending state -->
+        @if (state() === 'pending') {
+        <div class="invite-meta">
+            <div class="avatar-row">
+                <div class="avatar">{{ invitedBy[0] }}</div>
+                <p class="invite-text">
+                    <strong>{{ invitedBy }}</strong> invited you to collaborate on a board.
+                </p>
+            </div>
+            <button class="btn btn-primary" (click)="goToDashboard()">
+                Go to dashboard
+            </button>
+            <div class="board-chip">
+                <span class="material-symbols-rounded chip-icon">grid_view</span>
+                <span>{{ boardName }}</span>
+            </div>
+
+            <div class="expiry-row">
+                <span class="material-symbols-rounded expiry-icon">schedule</span>
+                <span>Invite expires in 7 days</span>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="actions">
+            <button class="btn btn-accept" [disabled]="isLoading()" (click)="respond('accepted')">
+                <span class="material-symbols-rounded">check</span>
+                Accept invite
+            </button>
+
+            <button class="btn btn-decline" [disabled]="isLoading()" (click)="respond('declined')">
+                Decline
+            </button>
+        </div>
+
+        <p class="note">You can leave the board at any time from your board settings.</p>
+        }
+
+        <!-- Accepted state -->
+        @if (state() === 'accepted') {
+        <div class="response-state">
+            <div class="state-icon state-icon--success">
+                <span class="material-symbols-rounded">check</span>
+            </div>
+            <h2>You're in</h2>
+            <p>You've joined the <strong>{{ boardName }}</strong> board. Head to your dashboard to get started.</p>
+            <button class="btn btn-accept" (click)="goToDashboard()">
+                Go to dashboard
+            </button>
+        </div>
+        }
+
+        <!-- Declined state -->
+        @if (state() === 'declined') {
+        <div class="response-state">
+            <div class="state-icon state-icon--danger">
+                <span class="material-symbols-rounded">close</span>
+            </div>
+            <h2>Invite declined</h2>
+            <p>You've declined the invite to <strong>{{ boardName }}</strong>. The board owner can send another invite
+                if needed.</p>
+        </div>
+        }
+
+    </div>
+</div>

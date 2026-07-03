@@ -1,0 +1,18 @@
+<footer class="footer-wrapper">
+    <nav class="bottom-nav">
+        @for (item of navItems; track item.route) {
+        <a [routerLink]="item.route" routerLinkActive="active" class="nav-item"
+            [routerLinkActiveOptions]="{ exact: item.exact }">
+            <span class="material-symbols-rounded icon">
+                {{ item.icon }}
+            </span>
+
+            <span class="label">
+                {{ item.label }}
+            </span>
+
+        </a>
+        }
+
+    </nav>
+</footer>

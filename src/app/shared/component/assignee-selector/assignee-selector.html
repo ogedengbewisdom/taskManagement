@@ -1,0 +1,66 @@
+<div class="input-wrapper">
+
+    <h3>ASSIGN TO</h3>
+
+    <div class="assignee-selector">
+
+        <div class="assignees">
+
+            <!-- @for(user of selectedUsers; track user.id) {
+
+            <div class="avatar">
+
+                {{ user.firstName[0] }}{{ user.lastName[0] }}
+
+            </div>
+
+            } -->
+
+
+            @for(user of selectedUsers; track user.id) {
+
+            <button type="button" class="avatar" (click)="removeUser(user.id)" [title]="'Remove ' + user.firstName">
+
+                {{ user.firstName[0] }}{{ user.lastName[0] }}
+
+            </button>
+
+            }
+            <button type="button" class="avatar add-avatar" (click)="toggleDropdown()">
+
+                +
+
+            </button>
+
+        </div>
+
+        @if(dropdownOpen()) {
+
+        <div class="dropdown">
+
+            @for(user of availableInvitees; track user.id) {
+
+            <button type="button" class="dropdown-item" (click)="addUser(user)">
+
+                <div class="avatar small">
+
+                    {{ user.firstName[0] }}{{ user.lastName[0] }}
+
+                </div>
+
+                <span>
+                    {{ user.firstName }}
+                    {{ user.lastName }}
+                </span>
+
+            </button>
+
+            }
+
+        </div>
+
+        }
+
+    </div>
+
+</div>

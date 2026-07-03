@@ -1,0 +1,42 @@
+<div class="auth-screen">
+
+    <div class="auth-card">
+
+        <div class="auth-brand">
+            <div class="brand-icon">
+                <span class="material-symbols-rounded">task_alt</span>
+            </div>
+            <h1 class="brand-name">TaskSpace</h1>
+        </div>
+
+        <div class="auth-header">
+            <h2>Welcome back</h2>
+            <p>Sign in to your account to continue</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form" novalidate>
+
+            <app-input-text [formGroup]="loginForm" name="email" label="Email" type="email"
+                placeholder="Enter your email" [errorMessage]="errorMessage('email')" [hasError]="hasError('email')" />
+
+            <app-password-input [formGroup]="loginForm" name="password" label="Password"
+                placeholder="Enter your password" [errorMessage]="errorMessage('password')"
+                [hasError]="hasError('password')" />
+
+            <div class="forgot-row">
+                <a class="forgot-link" routerLink="/auth/forgot-password">Forgot password?</a>
+            </div>
+
+            <app-button label="Sign In" variant="primary" [fullWidth]="true" size="md" type="submit"
+                [isLoading]="isLoading()" [disabled]="loginForm.invalid || isLoading()" />
+
+        </form>
+
+        <p class="auth-footer">
+            Don't have an account?
+            <a routerLink="/auth/signup" class="auth-link">Sign up</a>
+        </p>
+
+    </div>
+
+</div>

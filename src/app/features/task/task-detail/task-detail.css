@@ -1,0 +1,433 @@
+.task-detail-view {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    background: var(--bg);
+    overflow: hidden;
+}
+
+.task-header {
+    padding: 16px;
+    height: var(--header-height);
+    background: var(--bg);
+    border-bottom: var(--border);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.task-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.header-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    /* centre the title regardless of icon widths */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--text-primary);
+    transition: background 0.15s ease;
+}
+
+.header-btn:hover,
+.header-btn:focus-visible {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.header-btn .material-symbols-rounded {
+    font-size: 22px;
+}
+
+.task-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 24px 140px;
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.task-section {
+    margin-bottom: 32px;
+}
+
+.task-title {
+    font-size: var(--font-size-xl);
+    line-height: 1.15;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.input-wrapper h3 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.task-section h3 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    /* margin-bottom: 32px; */
+}
+
+.assignees {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--button-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+}
+
+.add-avatar {
+    border: 1px dashed var(--border-color);
+    background: transparent;
+    cursor: pointer;
+}
+
+.date-chip {
+    height: 52px;
+    border-radius: 14px;
+    border: var(--border);
+    background: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    font-weight: 500;
+}
+
+.date-chip .material-symbols-rounded {
+    font-size: 22px;
+    color: var(--text-secondary);
+}
+
+.checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.check-item input {
+    width: 22px;
+    height: 22px;
+}
+
+.check-label {
+    font-size: var(--font-size-md);
+    color: var(--text-primary);
+}
+
+.completed {
+    text-decoration: line-through;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.add-item-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 14px;
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.activity-header strong {
+    color: var(--text-primary);
+}
+
+.activity-header span {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.activity-content p {
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.activity-system {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+}
+
+.task-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 24px 24px calc(env(safe-area-inset-bottom) + 24px);
+    background: white;
+    border-top: var(--border);
+}
+
+.task-footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.task-footer-content app-button {
+    flex: 1;
+}
+
+.check-item input {
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.check-label {
+    flex: 1;
+}
+
+.remove-checklist-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.check-item:hover .remove-checklist-btn {
+    opacity: 1;
+}
+
+.remove-checklist-btn .material-symbols-rounded {
+    font-size: 16px;
+}
+
+.new-item-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.new-item-row .text-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1.5px solid var(--primary);
+    outline: none;
+    font-size: var(--font-size-md);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: transparent;
+    padding: 4px 0;
+    color: var(--text-primary);
+}
+
+.confirm-btn,
+.cancel-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background 0.15s;
+}
+
+.confirm-btn {
+    color: var(--primary);
+}
+
+.cancel-btn {
+    color: var(--text-secondary);
+}
+
+.confirm-btn:hover {
+    background: rgba(14, 165, 233, 0.1);
+}
+
+.cancel-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.confirm-btn .material-symbols-rounded,
+.cancel-btn .material-symbols-rounded {
+    font-size: 18px;
+}
+
+/* Loading state */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 24px;
+    color: var(--text-secondary);
+}
+
+.loading-state p {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+}
+
+.loading-state .material-symbols-rounded {
+    font-size: 40px;
+    color: var(--text-secondary);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinning {
+    animation: spin 1s linear infinite;
+}
+
+.back-link {
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Status pill */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.status-pill--todo {
+    background: rgba(14, 165, 233, 0.1);
+    color: var(--primary);
+}
+
+.status-pill--in_progress {
+    background: rgba(245, 158, 11, 0.1);
+    color: #d97706;
+}
+
+.status-pill--done {
+    background: rgba(22, 163, 74, 0.1);
+    color: #16a34a;
+}
+
+/* Check input — consistent with create form */
+.check-input {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.check-display {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    cursor: default;
+    color: var(--text-primary);
+    border: none;
+    background: transparent;
+    pointer-events: none;
+}

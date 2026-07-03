@@ -1,0 +1,303 @@
+/* board-view.component.css */
+
+/* ─── Layout shell ─────────────────────────────────────────── */
+
+.board-view {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+
+    /* full viewport, respects mobile chrome */
+    background: var(--bg);
+    overflow: hidden;
+    /* kanban-scroll handles its own overflow */
+}
+
+/* ─── Header ────────────────────────────────────────────────── */
+
+.board-header {
+    padding: 16px;
+    height: var(--header-height);
+    background: var(--bg);
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.board-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+
+}
+
+.board-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    /* centre the title regardless of icon widths */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--text-primary);
+    transition: background 0.15s ease;
+}
+
+.header-btn:hover,
+.header-btn:focus-visible {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.header-btn .material-symbols-rounded {
+    font-size: 22px;
+}
+
+.board-main {
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ─── Kanban scroll container ───────────────────────────────── */
+
+.kanban-scroll {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* leave room for bottom nav */
+    padding-bottom: var(--footer-height);
+    /* smooth momentum scroll on iOS */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+
+.kanban-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+
+.kanban-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+}
+
+/* The horizontal track that holds all columns side-by-side */
+.kanban-track {
+    display: flex;
+    gap: 14px;
+    padding: 20px 20px 24px;
+    height: 100%;
+    align-items: flex-start;
+    /* prevent track from shrinking — let it overflow the scroll container */
+    width: max-content;
+}
+
+/* ─── Individual column ─────────────────────────────────────── */
+
+.kanban-column {
+    width: 272px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Column header row */
+.col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2px;
+}
+
+.col-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.col-badge {
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--text-secondary-light);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+/* ─── Task card ─────────────────────────────────────────────── */
+
+.task-card {
+    background: #ffffff;
+    border: 1px solid #bec8d2;
+    border-radius: 8px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: box-shadow 0.18s ease, border-color 0.18s ease;
+    outline: none;
+}
+
+.task-card:hover,
+.task-card:focus-visible {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border-color: rgba(14, 165, 233, 0.35);
+}
+
+.task-card--overdue {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: #fffafa;
+}
+
+.task-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.45;
+}
+
+/* Footer row inside each card: date left, avatar right */
+.task-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.task-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.task-date--overdue {
+    color: #ef4444;
+}
+
+.task-title--done {
+    text-decoration: line-through;
+}
+
+.task-card-bg--done {
+    background-color: transparent;
+    color: var(--text-secondary);
+}
+
+.date-icon {
+    font-size: 14px;
+}
+
+.task-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(110, 120, 129, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(110, 120, 129, 0.5);
+    flex-shrink: 0;
+}
+
+.task-avatar .material-symbols-rounded {
+    font-size: 15px;
+}
+
+/* ─── Add Task button ───────────────────────────────────────── */
+
+.add-task-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 11px 0;
+    border: 1.5px dashed rgba(110, 120, 129, 0.35);
+    border-radius: 12px;
+    background: transparent;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.add-task-btn .material-symbols-rounded {
+    font-size: 18px;
+}
+
+.add-task-btn:hover,
+.add-task-btn:focus-visible {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(14, 165, 233, 0.04);
+    outline: none;
+}
+
+.drop-zone {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 60px;
+    /* so empty columns are still droppable */
+}
+
+.drag-handle {
+    display: flex;
+    justify-content: flex-end;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    cursor: grab;
+}
+
+.drag-handle .material-symbols-rounded {
+    font-size: 18px;
+}
+
+.drag-placeholder {
+    height: 60px;
+    border: 2px dashed rgba(14, 165, 233, 0.4);
+    border-radius: 12px;
+    background: rgba(14, 165, 233, 0.04);
+}
+
+/* CDK adds this class while dragging */
+.cdk-drag-animating {
+    transition: transform 250ms ease;
+}
+
+.cdk-drag-preview {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    opacity: 0.95;
+}

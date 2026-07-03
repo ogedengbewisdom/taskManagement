@@ -1,0 +1,133 @@
+<div class="task-form-view">
+
+    <header class="task-form-header">
+        <div class="task-form-header-content">
+
+            <button class="header-action" (click)="goBack()">
+                Cancel
+            </button>
+
+            <h1>New Task</h1>
+
+            <button class="header-action primary" type="button" (click)="onSubmit()">
+                Create
+            </button>
+        </div>
+    </header>
+
+    <form [formGroup]="taskForm" class="task-form">
+        <app-text-input [formGroup]="taskForm" name="title" label="" placeholder="Task Title..."
+            [errorMessage]="errorMessage('title')" [hasError]="hasError('title')">
+        </app-text-input>
+
+        <app-text-area [formGroup]="taskForm" name="description" label="" placeholder="Add description..."
+            [errorMessage]="errorMessage('description')" [hasError]="hasError('description')">
+        </app-text-area>
+
+        <app-assignee-selector [invitees]="invitees" [(selectedUsers)]="selectedUsers" />
+
+
+        <app-date-input [showChevron]="true" [formGroup]="taskForm" name="dueDate" label="DUE DATE" [minDate]="today"
+            [errorMessage]="errorMessage('dueDate')" [hasError]="hasError('dueDate')" />
+
+        <app-select-status formControlName="status" [boardName]="boardName()" name="status" label="BOARD"
+            [errorMessage]="errorMessage('status')" [hasError]="hasError('status')" [options]="options" />
+
+        <div class="divider"></div>
+
+        <section class="task-section">
+
+            <div class="section-header" (click)="addChecklistItem()">
+                <div class="section-header-left">
+                    <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M3.55 15.075L0 11.525L1.4 10.125L3.525 12.25L7.775 8L9.175 9.425L3.55 15.075ZM3.55 7.075L0 3.525L1.4 2.125L3.525 4.25L7.775 0L9.175 1.425L3.55 7.075ZM11 13.075V11.075H20V13.075H11ZM11 5.075V3.075H20V5.075H11Z"
+                            fill="#6B7280" />
+                    </svg>
+                    <h3>Add To Checklist</h3>
+                </div>
+
+                <button type="button" class="add-btn">
+
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 8H0V6H6V0H8V6H14V8H8V14H6V8Z" fill="#9CA3AF" />
+                    </svg>
+
+
+                </button>
+            </div>
+
+            <div formArrayName="checklist" class="checklist-wrapper">
+
+                @for(item of checklist.controls; track $index) {
+
+                <div class="checklist-item" [formGroupName]="$index">
+
+                    <input type="text" formControlName="label" placeholder="Checklist item..." class="text-input"
+                        [class.error]="item.get('label')?.invalid && item.get('label')?.touched">
+
+                    <button type="button" class="remove-btn" (click)="removeChecklistItem($index)">
+                        <span class="material-symbols-rounded">
+                            remove
+                        </span>
+                    </button>
+
+                </div>
+
+                @if(item.get('label')?.invalid && item.get('label')?.touched) {
+                <p class="error-message">
+                    Checklist item is required.
+                </p>
+                }
+
+                }
+
+            </div>
+
+        </section>
+
+        <!-- <div class="section-header">
+            <div class="section-header-left">
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M2 16C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H13C13.3167 0 13.6167 0.0708333 13.9 0.2125C14.1833 0.354167 14.4167 0.55 14.6 0.8L20 8L14.6 15.2C14.4167 15.45 14.1833 15.6458 13.9 15.7875C13.6167 15.9292 13.3167 16 13 16H2ZM2 14H13L17.5 8L13 2H2V14Z"
+                        fill="#6B7280" />
+                </svg>
+
+                <h3>Add Labels</h3>
+            </div>
+
+            <button type="button" class="add-btn" (click)="addLabel()">
+
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 8H0V6H6V0H8V6H14V8H8V14H6V8Z" fill="#9CA3AF" />
+                </svg>
+
+
+            </button>
+        </div>
+
+        <div class="section-header">
+            <div class="section-header-left">
+                <svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12.5 13.75C12.5 15.4833 11.8917 16.9583 10.675 18.175C9.45833 19.3917 7.98333 20 6.25 20C4.51667 20 3.04167 19.3917 1.825 18.175C0.608333 16.9583 0 15.4833 0 13.75V4.5C0 3.25 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.25 0 4.5 0C5.75 0 6.8125 0.4375 7.6875 1.3125C8.5625 2.1875 9 3.25 9 4.5V13.25C9 14.0167 8.73333 14.6667 8.2 15.2C7.66667 15.7333 7.01667 16 6.25 16C5.48333 16 4.83333 15.7333 4.3 15.2C3.76667 14.6667 3.5 14.0167 3.5 13.25V4H5.5V13.25C5.5 13.4667 5.57083 13.6458 5.7125 13.7875C5.85417 13.9292 6.03333 14 6.25 14C6.46667 14 6.64583 13.9292 6.7875 13.7875C6.92917 13.6458 7 13.4667 7 13.25V4.5C6.98333 3.8 6.7375 3.20833 6.2625 2.725C5.7875 2.24167 5.2 2 4.5 2C3.8 2 3.20833 2.24167 2.725 2.725C2.24167 3.20833 2 3.8 2 4.5V13.75C1.98333 14.9333 2.39167 15.9375 3.225 16.7625C4.05833 17.5875 5.06667 18 6.25 18C7.41667 18 8.40833 17.5875 9.225 16.7625C10.0417 15.9375 10.4667 14.9333 10.5 13.75V4H12.5V13.75Z"
+                        fill="#6B7280" />
+                </svg>
+
+
+                <h3>Add Attachments</h3>
+            </div>
+
+            <button type="button" class="add-btn" (click)="addAttachment()">
+
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 8H0V6H6V0H8V6H14V8H8V14H6V8Z" fill="#9CA3AF" />
+                </svg>
+
+
+            </button>
+        </div> -->
+    </form>
+
+</div>

@@ -1,0 +1,46 @@
+<div class="input-wrapper">
+    <h3>INVITE MEMBERS</h3>
+
+    <div class="user-search-selector">
+
+        <div class="assignees">
+
+            @for(user of selectedUsers; track user.id) {
+            <button type="button" class="avatar" (click)="removeUser(user.id)" [title]="'Remove ' + user.firstName">
+                {{ user.firstName[0] }}{{ user.lastName[0] }}
+            </button>
+            }
+
+            <button type="button" class="avatar add-avatar" (click)="toggleDropdown()">
+                +
+            </button>
+
+        </div>
+
+        @if(dropdownOpen()) {
+        <div class="dropdown">
+
+            <div class="search-row">
+                <span class="material-symbols-rounded search-icon">search</span>
+                <input type="text" class="search-input" placeholder="Search users..." [ngModel]="searchTerm()"
+                    (ngModelChange)="onSearchChange($event)" autofocus />
+            </div>
+
+            <div class="dropdown-list">
+                @for(user of filteredUsers; track user.id) {
+                <button type="button" class="dropdown-item" (click)="addUser(user)">
+                    <div class="avatar small">
+                        {{ user.firstName[0] }}{{ user.lastName[0] }}
+                    </div>
+                    <span>{{ user.firstName }} {{ user.lastName }}</span>
+                </button>
+                } @empty {
+                <p class="no-results">No users found.</p>
+                }
+            </div>
+
+        </div>
+        }
+
+    </div>
+</div>

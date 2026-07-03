@@ -1,0 +1,264 @@
+/* invite-response.css */
+
+.invite-page {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--bg);
+}
+
+/* ─── Card ──────────────────────────────────────────────────── */
+
+.invite-card {
+    width: 100%;
+    max-width: 380px;
+    background: #ffffff;
+    border: 0.5px solid rgba(110, 120, 129, 0.2);
+    border-radius: 16px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ─── Brand ─────────────────────────────────────────────────── */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-icon .material-symbols-rounded {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.brand-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* ─── Divider ───────────────────────────────────────────────── */
+
+.divider {
+    height: 0.5px;
+    background: rgba(110, 120, 129, 0.2);
+}
+
+/* ─── Invite meta ───────────────────────────────────────────── */
+
+.invite-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.avatar-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--text-secondary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.invite-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding-top: 4px;
+}
+
+.invite-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ─── Board chip ─────────────────────────────────────────────── */
+
+.board-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(14, 165, 233, 0.08);
+    border: 0.5px solid rgba(14, 165, 233, 0.25);
+    border-radius: 8px;
+    padding: 6px 12px;
+    width: fit-content;
+}
+
+.chip-icon {
+    font-size: 15px;
+    color: var(--primary);
+}
+
+.board-chip span:last-child {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* ─── Expiry ─────────────────────────────────────────────────── */
+
+.expiry-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.expiry-icon {
+    font-size: 15px;
+}
+
+/* ─── Actions ────────────────────────────────────────────────── */
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    width: 100%;
+    height: 46px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: opacity 0.15s, background 0.15s;
+}
+
+.btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.btn .material-symbols-rounded {
+    font-size: 18px;
+}
+
+.btn-accept {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.btn-accept:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.btn-decline {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 0.5px solid rgba(110, 120, 129, 0.35);
+}
+
+.btn-decline:hover:not(:disabled) {
+    background: var(--text-secondary-light);
+}
+
+/* ─── Note ───────────────────────────────────────────────────── */
+
+.note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* ─── Response states ────────────────────────────────────────── */
+
+.response-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    text-align: center;
+}
+
+.state-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.state-icon .material-symbols-rounded {
+    font-size: 26px;
+}
+
+.state-icon--success {
+    background: rgba(22, 163, 74, 0.1);
+}
+
+.state-icon--success .material-symbols-rounded {
+    color: #16a34a;
+}
+
+.state-icon--danger {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.state-icon--danger .material-symbols-rounded {
+    color: #ef4444;
+}
+
+.response-state h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.response-state p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+.response-state strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.response-state .btn {
+    margin-top: 8px;
+    max-width: 240px;
+}

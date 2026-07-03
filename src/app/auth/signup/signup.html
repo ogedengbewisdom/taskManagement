@@ -1,0 +1,48 @@
+<div class="auth-screen">
+
+    <div class="auth-card">
+
+        <div class="auth-brand">
+            <div class="brand-icon">
+                <span class="material-symbols-rounded">task_alt</span>
+            </div>
+            <h1 class="brand-name">TaskSpace</h1>
+        </div>
+
+        <div class="auth-header">
+            <h2>Create an account</h2>
+            <p>Welcome to TaskSpace. Manage your tasks efficiently. Stay organized and in control</p>
+        </div>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="auth-form" novalidate>
+
+            <div class="name-row">
+                <app-input-text [formGroup]="signupForm" name="firstName" label="First Name" type="text"
+                    placeholder="First name" [errorMessage]="errorMessage('firstName')"
+                    [hasError]="hasError('firstName')" />
+
+                <app-input-text [formGroup]="signupForm" name="lastName" label="Last Name" type="text"
+                    placeholder="Last name" [errorMessage]="errorMessage('lastName')"
+                    [hasError]="hasError('lastName')" />
+            </div>
+
+            <app-input-text [formGroup]="signupForm" name="email" label="Email" type="email"
+                placeholder="Enter your email" [errorMessage]="errorMessage('email')" [hasError]="hasError('email')" />
+
+            <app-password-input [formGroup]="signupForm" name="password" label="Password"
+                placeholder="Create a password" [errorMessage]="errorMessage('password')"
+                [hasError]="hasError('password')" />
+
+            <app-button label="Create Account" variant="primary" [fullWidth]="true" size="md" type="submit"
+                [isLoading]="isLoading()" [disabled]="isLoading() || signupForm.invalid" />
+
+        </form>
+
+        <p class="auth-footer">
+            Already have an account?
+            <a routerLink="/auth/login" class="auth-link">Sign in</a>
+        </p>
+
+    </div>
+
+</div>
