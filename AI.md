@@ -125,3 +125,24 @@ A summary of the key prompts and decisions made during the planning and building
 - Replaced all custom pointer logic with `cdkDropList`, `cdkDrag`, `cdkDragHandle` directives
 - `onTaskDrop(event: CdkDragDrop<Task[]>)` calls `taskService.moveTask()` on drop
 - `cdkDragHandle` separates drag gesture from click — tap navigates, drag moves
+
+
+AI Reflection
+
+How AI was used
+
+Explained unfamiliar NestJS, Angular, and TypeORM concepts.
+Suggested project structure and implementation approaches.
+Reviewed existing code and identified potential bugs.
+Assisted with debugging backend and frontend issues.
+
+Where AI suggestions were refined
+
+Reworked the task caching strategy after identifying issues with a shared BehaviorSubject.
+Adjusted invitation handling to reload related entities before sending emails.
+Simplified some suggested implementations after testing them in the project.
+
+Should I use a transaction when creating a task and its checklist?
+A transaction would only become necessary if you were performing several independent database operations that all had to succeed or fail together.
+
+Explain findOneByOrFail like I'm a beginner.
